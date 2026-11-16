@@ -1,16 +1,20 @@
 MERGE INTO
-    ${catalog}.${database}.catalog_returns
+    ${catalog}.${database}.catalog_returns t
         USING(
         SELECT
-            cs_order_number
+            returns.cr_order_number,
+            returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
-            ${catalog}.${database}.date_dim
+            ${catalog}.${database}.date_dim,
+            ${catalog}.${database}.catalog_returns returns
         WHERE
             cs_sold_date_sk = d_date_sk
+            AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param1}' AND '${param2}'
     ) SOURCE ON
-    cr_order_number = cs_order_number
+    t.cr_order_number = SOURCE.cr_order_number
+    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -35,18 +39,22 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.catalog_returns
+    ${catalog}.${database}.catalog_returns t
         USING(
         SELECT
-            cs_order_number
+            returns.cr_order_number,
+            returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
-            ${catalog}.${database}.date_dim
+            ${catalog}.${database}.date_dim,
+            ${catalog}.${database}.catalog_returns returns
         WHERE
             cs_sold_date_sk = d_date_sk
+            AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param3}' AND '${param4}'
     ) SOURCE ON
-    cr_order_number = cs_order_number
+    t.cr_order_number = SOURCE.cr_order_number
+    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -71,18 +79,22 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.catalog_returns
+    ${catalog}.${database}.catalog_returns t
         USING(
         SELECT
-            cs_order_number
+            returns.cr_order_number,
+            returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
-            ${catalog}.${database}.date_dim
+            ${catalog}.${database}.date_dim,
+            ${catalog}.${database}.catalog_returns returns
         WHERE
             cs_sold_date_sk = d_date_sk
+            AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param5}' AND '${param6}'
     ) SOURCE ON
-    cr_order_number = cs_order_number
+    t.cr_order_number = SOURCE.cr_order_number
+    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
     WHEN MATCHED THEN DELETE;
         
         DELETE

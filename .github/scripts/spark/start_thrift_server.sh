@@ -11,7 +11,7 @@ PARAMS="--conf spark.sql.ansi.enabled=false"
 if [[ $1 == "delta" ]]; then
   PARAMS="$PARAMS --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension"
 elif [[ $1 == "hudi" ]]; then
-  PARAMS="$PARAMS --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.hudi.catalog.HoodieCatalog --conf spark.sql.extensions=org.apache.spark.sql.hudi.HoodieSparkSessionExtension --conf hoodie.datasource.write.merge.into.partial.updates=true"
+  PARAMS="$PARAMS --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.hudi.catalog.HoodieCatalog --conf spark.sql.extensions=org.apache.spark.sql.hudi.HoodieSparkSessionExtension"
 elif [[ $1 == "iceberg" ]]; then
   # Keep spark_catalog as the session catalog so CREATE VIEW still works. Hadoop
   # Iceberg catalogs do not implement Spark view support.
