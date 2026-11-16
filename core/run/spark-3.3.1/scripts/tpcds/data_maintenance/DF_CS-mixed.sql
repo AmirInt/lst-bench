@@ -1,8 +1,8 @@
 MERGE INTO
-    ${catalog}.${database}.catalog_returns t
+    ${catalog}.${database}.catalog_returns
         USING(
-        SELECT
-            returns.cr_order_number,
+        SELECT DISTINCT
+            cs_order_number,
             returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
@@ -13,8 +13,7 @@ MERGE INTO
             AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param1}' AND '${param2}'
     ) SOURCE ON
-    t.cr_order_number = SOURCE.cr_order_number
-    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
+    cr_order_number = cs_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -39,10 +38,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.catalog_returns t
+    ${catalog}.${database}.catalog_returns
         USING(
-        SELECT
-            returns.cr_order_number,
+        SELECT DISTINCT
+            cs_order_number,
             returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
@@ -53,8 +52,7 @@ MERGE INTO
             AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param3}' AND '${param4}'
     ) SOURCE ON
-    t.cr_order_number = SOURCE.cr_order_number
-    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
+    cr_order_number = cs_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -79,10 +77,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.catalog_returns t
+    ${catalog}.${database}.catalog_returns
         USING(
-        SELECT
-            returns.cr_order_number,
+        SELECT DISTINCT
+            cs_order_number,
             returns.cr_returned_date_sk
         FROM
             ${catalog}.${database}.catalog_sales,
@@ -93,8 +91,7 @@ MERGE INTO
             AND returns.cr_order_number = cs_order_number
             AND d_date BETWEEN '${param5}' AND '${param6}'
     ) SOURCE ON
-    t.cr_order_number = SOURCE.cr_order_number
-    AND t.cr_returned_date_sk = SOURCE.cr_returned_date_sk
+    cr_order_number = cs_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE

@@ -1,8 +1,8 @@
 MERGE INTO
-    ${catalog}.${database}.store_returns t
+    ${catalog}.${database}.store_returns
         USING(
-        SELECT
-            returns.sr_ticket_number,
+        SELECT DISTINCT
+            ss_ticket_number,
             returns.sr_returned_date_sk
         FROM
             ${catalog}.${database}.store_sales,
@@ -13,8 +13,7 @@ MERGE INTO
             AND returns.sr_ticket_number = ss_ticket_number
             AND d_date BETWEEN '${param1}' AND '${param2}'
     ) SOURCE ON
-    t.sr_ticket_number = SOURCE.sr_ticket_number
-    AND t.sr_returned_date_sk = SOURCE.sr_returned_date_sk
+    sr_ticket_number = ss_ticket_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -39,10 +38,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.store_returns t
+    ${catalog}.${database}.store_returns
         USING(
-        SELECT
-            returns.sr_ticket_number,
+        SELECT DISTINCT
+            ss_ticket_number,
             returns.sr_returned_date_sk
         FROM
             ${catalog}.${database}.store_sales,
@@ -53,8 +52,7 @@ MERGE INTO
             AND returns.sr_ticket_number = ss_ticket_number
             AND d_date BETWEEN '${param3}' AND '${param4}'
     ) SOURCE ON
-    t.sr_ticket_number = SOURCE.sr_ticket_number
-    AND t.sr_returned_date_sk = SOURCE.sr_returned_date_sk
+    sr_ticket_number = ss_ticket_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -79,10 +77,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.store_returns t
+    ${catalog}.${database}.store_returns
         USING(
-        SELECT
-            returns.sr_ticket_number,
+        SELECT DISTINCT
+            ss_ticket_number,
             returns.sr_returned_date_sk
         FROM
             ${catalog}.${database}.store_sales,
@@ -93,8 +91,7 @@ MERGE INTO
             AND returns.sr_ticket_number = ss_ticket_number
             AND d_date BETWEEN '${param5}' AND '${param6}'
     ) SOURCE ON
-    t.sr_ticket_number = SOURCE.sr_ticket_number
-    AND t.sr_returned_date_sk = SOURCE.sr_returned_date_sk
+    sr_ticket_number = ss_ticket_number
     WHEN MATCHED THEN DELETE;
         
         DELETE

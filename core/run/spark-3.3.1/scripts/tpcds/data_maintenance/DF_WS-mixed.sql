@@ -1,8 +1,8 @@
 MERGE INTO
-    ${catalog}.${database}.web_returns t
+    ${catalog}.${database}.web_returns
         USING(
-        SELECT
-            returns.wr_order_number,
+        SELECT DISTINCT
+            ws_order_number,
             returns.wr_returned_date_sk
         FROM
             ${catalog}.${database}.web_sales,
@@ -13,8 +13,7 @@ MERGE INTO
             AND returns.wr_order_number = ws_order_number
             AND d_date BETWEEN '${param1}' AND '${param2}'
     ) SOURCE ON
-    t.wr_order_number = SOURCE.wr_order_number
-    AND t.wr_returned_date_sk = SOURCE.wr_returned_date_sk
+    wr_order_number = ws_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -39,10 +38,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.web_returns t
+    ${catalog}.${database}.web_returns
         USING(
-        SELECT
-            returns.wr_order_number,
+        SELECT DISTINCT
+            ws_order_number,
             returns.wr_returned_date_sk
         FROM
             ${catalog}.${database}.web_sales,
@@ -53,8 +52,7 @@ MERGE INTO
             AND returns.wr_order_number = ws_order_number
             AND d_date BETWEEN '${param3}' AND '${param4}'
     ) SOURCE ON
-    t.wr_order_number = SOURCE.wr_order_number
-    AND t.wr_returned_date_sk = SOURCE.wr_returned_date_sk
+    wr_order_number = ws_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
@@ -79,10 +77,10 @@ MERGE INTO
             );
 
 MERGE INTO
-    ${catalog}.${database}.web_returns t
+    ${catalog}.${database}.web_returns
         USING(
-        SELECT
-            returns.wr_order_number,
+        SELECT DISTINCT
+            ws_order_number,
             returns.wr_returned_date_sk
         FROM
             ${catalog}.${database}.web_sales,
@@ -93,8 +91,7 @@ MERGE INTO
             AND returns.wr_order_number = ws_order_number
             AND d_date BETWEEN '${param5}' AND '${param6}'
     ) SOURCE ON
-    t.wr_order_number = SOURCE.wr_order_number
-    AND t.wr_returned_date_sk = SOURCE.wr_returned_date_sk
+    wr_order_number = ws_order_number
     WHEN MATCHED THEN DELETE;
         
         DELETE
