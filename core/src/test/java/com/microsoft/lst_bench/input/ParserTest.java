@@ -124,7 +124,7 @@ public class ParserTest {
   public void testParseTaskLibrary() throws IOException {
     Library library = FileParser.loadLibrary(TPCDS_PATH + "library.yaml");
     Assertions.assertEquals(1, library.getVersion());
-    Assertions.assertEquals(16, library.getTaskTemplates().size());
+    Assertions.assertEquals(18, library.getTaskTemplates().size());
     for (TaskTemplate taskTemplate : library.getTaskTemplates()) {
       switch (taskTemplate.getId()) {
         case "setup":
@@ -150,7 +150,9 @@ public class ParserTest {
         case "build":
         case "analyze":
         case "optimize_delta":
+        case "optimize_delta_purge":
         case "optimize_split_delta":
+        case "optimize_delta_purge":
         case "optimize_hudi":
         case "optimize_split_hudi":
         case "optimize_iceberg":
