@@ -152,7 +152,7 @@ public class ParserTest {
         case "optimize_delta":
         case "optimize_delta_purge":
         case "optimize_split_delta":
-        case "optimize_delta_purge":
+        case "optimize_split_delta_purge":
         case "optimize_hudi":
         case "optimize_split_hudi":
         case "optimize_iceberg":
