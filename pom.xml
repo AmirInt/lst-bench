@@ -267,7 +267,7 @@
                             <include>adapters/cab-converter/src/test/java/**/*.java</include>
                         </includes>
                         <googleJavaFormat>
-                            <version>1.36.1</version>
+                            <version>1.28.0</version>
                         </googleJavaFormat>
                         <replaceRegex>
                             <name>Invalid wildcard imports</name>
