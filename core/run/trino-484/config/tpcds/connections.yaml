@@ -1,7 +1,0 @@
-version: 1
-connections:
-- id: trino_0
-  driver: io.trino.jdbc.TrinoDriver
-  url: jdbc:trino://trino.lakecluster.local:80
-  username: admin
-  password: ''

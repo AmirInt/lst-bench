@@ -185,7 +185,7 @@ task_templates:
   - run/trino-420/scripts/tpcds/single_user/query87.sql
   - run/trino-420/scripts/tpcds/single_user/query88.sql
   - run/trino-420/scripts/tpcds/single_user/query89.sql
-  # - run/trino-420/scripts/tpcds/single_user/query90.sql
+  - run/trino-420/scripts/tpcds/single_user/query90.sql
   - run/trino-420/scripts/tpcds/single_user/query91.sql
   - run/trino-420/scripts/tpcds/single_user/query92.sql
   - run/trino-420/scripts/tpcds/single_user/query93.sql
