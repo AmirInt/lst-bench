@@ -266,9 +266,10 @@
                             <include>adapters/cab-converter/src/main/java/**/*.java</include>
                             <include>adapters/cab-converter/src/test/java/**/*.java</include>
                         </includes>
-                        <googleJavaFormat>
+                        <!-- <googleJavaFormat>
                             <version>1.36.1</version>
-                        </googleJavaFormat>
+                        </googleJavaFormat> -->
+                        <googleJavaFormat />
                         <replaceRegex>
                             <name>Invalid wildcard imports</name>
                             <searchRegex>import\s+(?:static\s+)?[^*\s]+\*;(\r\n|\r|\n)</searchRegex>
