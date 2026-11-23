@@ -1,0 +1,23 @@
+version: 1
+id: trino484_delta_cow_tpcds
+repetitions: 1
+metadata:
+  system: trino
+  system_version: 484
+  table_format: delta
+  scale_factor: 1
+  mode: cow
+parameter_values:
+  external_catalog: hive
+  external_database: external_tpcds
+  external_table_format: textfile
+  external_data_path: 's3://lake-data/tpcds/sf1/raw/'
+  external_options_suffix: ''
+  external_tblproperties_suffix: ", textfile_field_separator='|', null_format=''"
+  catalog: delta
+  database: delta_tpcds
+  table_format: delta
+  data_path: 's3://lake-data/trino484_delta_cow_tpcds/sf1/'
+  options_suffix: ''
+  tblproperties_suffix: ''
+  partition_spec_keyword: 'partitioned_by'

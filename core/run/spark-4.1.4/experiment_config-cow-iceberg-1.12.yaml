@@ -1,0 +1,30 @@
+# Description: Experiment Configuration
+---
+version: 1
+id: "spark_iceberg_cow_sf_${EXP_SCALE_FACTOR:-1}"
+repetitions: 1
+# Metadata accepts any key-value that we want to register together with the experiment run.
+metadata:
+  system: spark
+  system_version: 4.1.4
+  table_format: iceberg
+  table_format_version: 1.12
+  scale_factor: "${EXP_SCALE_FACTOR:-1}"
+  mode: cow
+  machine: lake-cluster
+  cluster_size: 1
+# The following parameter values will be used to replace the variables in the workload statements.
+parameter_values:
+  external_catalog: spark_catalog
+  external_database: "external_tpcds_sf_${EXP_SCALE_FACTOR:-1}"
+  external_table_format: csv
+  external_data_path: "s3a://lake-data/tpcds/sf${EXP_SCALE_FACTOR:-1}/raw/"
+  external_options_suffix: ',header="false",delimiter="|"'
+  external_tblproperties_suffix: ''
+  catalog: polaris
+  database: "iceberg_cow_sf_${EXP_SCALE_FACTOR:-1}"
+  table_format: iceberg
+  data_path: "s3://lake-data/iceberg/lakehouse/iceberg_cow_sf_${EXP_SCALE_FACTOR:-1}/"
+  # spark4.1.4_delta_mor
+  options_suffix: ''
+  tblproperties_suffix: ', "format-version"="2", "write.delete.mode"="copy-on-write", "write.update.mode"="copy-on-write", "write.merge.mode"="copy-on-write"'
